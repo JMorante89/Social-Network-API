@@ -1,34 +1,32 @@
 const { Schema, Types } = require('mongoose');
+// const dateFormat = require('../utils/dateFormat');
 
-const assignmentSchema = new Schema(
+const reactionSchema = new Schema(
   {
-    assignmentId: {
+    reactionId: {
       type: Schema.Types.ObjectId,
-      default: () => new Types.ObjectId(),
+      default: () => new Types.ObjectId()
     },
-    assignmentName: {
+    reactionBody: {
       type: String,
       required: true,
-      maxlength: 50,
-      minlength: 4,
-      default: 'Unnamed assignment',
     },
-    score: {
-      type: Number,
-      required: true,
-      default: () => Math.floor(Math.random() * (100 - 70 + 1) + 70),
+    username: {
+      type: String,
+      required: true
     },
     createdAt: {
       type: Date,
       default: Date.now,
-    },
+      //get: timestamp => dateFormat(timestamp)
+    }
   },
   {
     toJSON: {
-      getters: true,
+      getters: true
     },
-    id: false,
+    id: false
   }
 );
 
-module.exports = assignmentSchema;
+module.exports = reactionSchema;
